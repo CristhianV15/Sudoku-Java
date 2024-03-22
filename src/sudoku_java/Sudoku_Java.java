@@ -38,18 +38,45 @@ public class Sudoku_Java {
             System.out.print(array[i] + " - " );
         }
     }
-    public static void resolverLinea(int array[]){
-        int arrayCompleto[]={1,2,3,4,5,6,7,8,9};
+    public static void resolverLinea(int sudoku[]){
+        boolean[] numUsados= new boolean[10]; // Números del 0 al 9
         System.out.println("Resolviendo ..........");
-        for (int i = 0; i < array.length; i++) {
-            if (array[i]==0) {
-                for (int j = 0; j < array.length; j++) {
-                    boolean name = array[i]== arrayCompleto[j];                            
+        
+        for (int i = 0; i < sudoku.length; i++) { //for usado para llenar los numeros usados con true y false
+            if (sudoku[i]!=0) {
+                numUsados[sudoku[i]] = true;
+            }
+            
+        }
+//        for (int i = 0; i < array.length; i++) {
+//            if (array[i]==0) {
+//                for (int j = 0; j < array.length; j++) {
+//                    boolean name = array[i]== arrayCompleto[j];                            
+//                }
+//            }
+//        }
+        
+    }
+         // Función para resolver la línea
+    public static void resolverLinea2(int[] numeros) {
+        boolean[] usados = new boolean[10]; // Marcador para números usados
+
+        for (int i = 0; i < 9; i++) {
+            if (numeros[i] != 0) {
+                usados[numeros[i]] = true;
+            }
+        }
+
+        for (int i = 0; i < 9; i++) {
+            if (numeros[i] == 0) {
+                for (int num = 1; num <= 9; num++) {
+                    if (!usados[num]) {
+                        numeros[i] = num;
+                        usados[num] = true;
+                        break;
+                    }
                 }
             }
         }
-        
-        
-        
     }
 }
