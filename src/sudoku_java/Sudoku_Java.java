@@ -18,6 +18,7 @@ public class Sudoku_Java {
         String nombre= sc.nextLine();
         System.out.println("Hola "+ nombre + ".");
         //Array basico para ir probando diseño y logica
+        System.out.println("Los 0 ingresados representan espacio en blanco");
         int array[] = new int[9];
         registrardatos(array);
         imprimirdatos(array);
@@ -36,5 +37,19 @@ public class Sudoku_Java {
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + " - " );
         }
+    }
+    public static void resolverLinea(int array[]){
+        int arrayCompleto[]={1,2,3,4,5,6,7,8,9};
+        System.out.println("Resolviendo ..........");
+        for (int i = 0; i < array.length; i++) {
+            if (array[i]==0) {
+                for (int j = 0; j < array.length; j++) {
+                    boolean name = array[i]== arrayCompleto[j];                            
+                }
+            }
+        }
+        
+        
+        
     }
 }
