@@ -79,4 +79,26 @@ public class Sudoku_Java {
             }
         }
     }
+    
+    public static void resolverLinea3(int[] numeros) {
+        boolean[] usados = new boolean[10]; // Marcador para números usados
+
+        for (int i = 0; i < 9; i++) {
+            if (numeros[i] != 0) {
+                usados[numeros[i]] = true;
+            }
+        }
+
+        for (int i = 0; i < 9; i++) {
+            if (numeros[i] == 0) {
+                for (int num = 1; num <= 9; num++) {
+                    if (!usados[num]) {
+                        numeros[i] = num;
+                        usados[num] = true;
+                        break;
+                    }
+                }
+            }
+        }
+    }
 }
