@@ -48,13 +48,13 @@ public class Sudoku_Java {
             }
             
         }
-//        for (int i = 0; i < array.length; i++) {
-//            if (array[i]==0) {
-//                for (int j = 0; j < array.length; j++) {
-//                    boolean name = array[i]== arrayCompleto[j];                            
-//                }
-//            }
-//        }
+        for (int i = 0; i < array.length; i++) {
+            if (array[i]==0) {
+                for (int j = 0; j < array.length; j++) {
+                    boolean name = array[i]== arrayCompleto[j];                            
+                }
+            }
+        }
         
     }
          // Función para resolver la línea
