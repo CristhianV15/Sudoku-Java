@@ -15,17 +15,22 @@ public class Sudoku_Java {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
+        
         System.out.println("Cual es tu nombre");
         String nombre = sc.nextLine();
         System.out.println("Hola " + nombre + ".");
-        //Array basico para ir probando diseño y logica
+                               
         System.out.println("Los 0 ingresados representan espacio en blanco");
-        int array[] = new int[9];
-        registrardatos(array);
+        int array[] = new int[9];        //Array basico para ir probando diseño y logica
+        
+        registrardatos(array); //Registra los 9 números en un array         
+        
+        System.out.println("Tus números son : ");
         imprimirDatos(array);
+        System.out.println("La resolución es:");
         resolverLinea(array);
 
-        int[][] sudoku = new int[9][9]; //Matriz bidimensional para el sudoku
+        //int[][] sudoku = new int[9][9]; //Matriz bidimensional para el sudoku
 
     }
 
@@ -37,37 +42,54 @@ public class Sudoku_Java {
     }
 
     public static void imprimirDatos(int array[]) {
-        System.out.println("Tus 9 números fueron: ");
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + " - ");
         }
     }
 
     // Método genérico para imprimir un array de cualquier tipo de envoltura
-    public static <T> void imprimirDatosGenericos(T[] array) {
-        System.out.println("Tus datos son: ");
+    public static <T> void imprimirDatosGenericos(T[] array) {       
         for (T elemento : array) {
             System.out.print(elemento + " ");
         }
         System.out.println();
     }
 
-    public static void resolverLinea(int sudoku[]) {
+    public static void resolverLinea(int linea[]) {
         //Metodo 1 
         /*Este enfoque utiliza dos arrays: uno para almacenar los números proporcionados por el usuario y otro para los números posibles en cada celda. 
         Se reemplazan los números no válidos con 0 en el array de números posibles. 
         Luego, se comienza con una matriz de posibles números y se van restringiendo según las reglas del sudoku, hasta obtener una solución válida.*/
+              
+        int[] arrayNumeros = {1, 2, 3, 4, 5, 6, 7, 8, 9}; //Array con los 9 números posibles por cada linea 
 
-        int[] arrayNumeros = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-
-        for (int i = 0; i < arrayNumeros.length; i++) {
-            // Supongamos que la función esNumeroValido() verifica si el número es válido o no
-            if (!esNumeroValido(sudoku[i])) {
-                arrayNumeros[i] = 0; // Reemplazar el número no válido con 0
+        int cNumerosVacios = 0;
+                  
+        for (int num : linea) {
+            if (num == 0) {
+                cNumerosVacios++;
             }
         }
         
-        imprimirDatos(arrayNumeros);
+        
+        System.out.println("La cantidad de números vacios en la linea son : " + cNumerosVacios);
+        int[] arrayRestante = new int[cNumerosVacios]; //Array para almacenar los números faltantes en la linea ingresada 
+        int index=0 ; //Contador para rastrear la posición en ArrayRestantes
+        for (int num : arrayNumeros){
+            boolean encontrado = false;
+            for (int i = 0; i < linea.length; i++) {
+                if (linea[i]== num) {
+                    encontrado = true;
+                    break;
+                }
+            }
+            if(!encontrado){
+            arrayRestante[index++]= num;
+            }
+        }
+        
+        imprimirDatos(arrayRestante);
+        
         //Metodo2
         /*En este enfoque se utiliza un solo array para almacenar la fila de números y un array booleano para marcar qué números han sido utilizados.
         Se recorre la fila y se marcan los números ya proporcionados. Luego, para las celdas vacías, se asigna el primer número disponible que no ha sido utilizado. */
