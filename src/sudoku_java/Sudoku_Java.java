@@ -92,16 +92,15 @@ public class Sudoku_Java {
       
         
         //Llenar arreglo con numeros restantes
-        int contador=1;
-        for (int num : linea){
-            if(linea[num] ==0){
-                linea[num] = arrayRestante[contador];
+        int contador=0;
+        for (int i = 0; i < linea.length; i++) {
+            if (linea[i]==0) {
+                linea[i] = arrayRestante[contador];
                 contador++;
             }
-        
-            System.out.println("resuelto");
-            imprimirDatos(linea);
         }
+        System.out.println("La solución seria");
+        imprimirDatos(linea);
         //Metodo2
         /*En este enfoque se utiliza un solo array para almacenar la fila de números y un array booleano para marcar qué números han sido utilizados.
         Se recorre la fila y se marcan los números ya proporcionados. Luego, para las celdas vacías, se asigna el primer número disponible que no ha sido utilizado. */
