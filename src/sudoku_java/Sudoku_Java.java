@@ -29,7 +29,9 @@ public class Sudoku_Java {
         imprimirDatos(array);
         System.out.println("La resolución es:");
         resolverLinea(array);
-
+        
+        
+        
         //int[][] sudoku = new int[9][9]; //Matriz bidimensional para el sudoku
 
     }
@@ -63,44 +65,44 @@ public class Sudoku_Java {
               
         int[] arrayNumeros = {1, 2, 3, 4, 5, 6, 7, 8, 9}; //Array con los 9 números posibles por cada linea 
 
-        int cNumerosVacios = 0;
+        int cNumerosVacios = 0; // Contador para guardar la cantidad de numeros vacios y crear el array de numeros restantes
                   
-        for (int num : linea) {
+        for (int num : linea) { //Ciclo foreach para obtener el numero restantes del array 'Linea'
             if (num == 0) {
                 cNumerosVacios++;
             }
-        }
+        }       
+        // System.out.println("La cantidad de números vacios en la linea son : " + cNumerosVacios); //Verificar la cantidad de números vacios
         
-        
-        System.out.println("La cantidad de números vacios en la linea son : " + cNumerosVacios);
         int[] arrayRestante = new int[cNumerosVacios]; //Array para almacenar los números faltantes en la linea ingresada 
         int index=0 ; //Contador para rastrear la posición en ArrayRestantes
-        for (int num : arrayNumeros){
-            boolean encontrado = false;
-            for (int i = 0; i < linea.length; i++) {
-                if (linea[i]== num) {
-                    encontrado = true;
+        for (int num : arrayNumeros){ //Foreach para recorrer los valores de ArrayNumeros [1-9]
+            boolean encontrado = false; //Booleano para verificar si se encontro o no
+            for (int i = 0; i < linea.length; i++) { //Recorrer los valores del array 'Linea' , que fue ingresado por el usuario 
+                if (linea[i]== num) { //Si el número de la linea es igual a uno de los números 1 al 9 se termina el bucle cambiando el valor del booleano
+                    encontrado = true; 
                     break;
                 }
             }
-            if(!encontrado){
+            if(!encontrado){ //Si no se encontro se guarda en el arrayRestante 
             arrayRestante[index++]= num;
             }
         }
         
-        imprimirDatos(arrayRestante);
-      
+        //imprimirDatos(arrayRestante); //Ver números restantes     
         
         //Llenar arreglo con numeros restantes
         int contador=0;
-        for (int i = 0; i < linea.length; i++) {
-            if (linea[i]==0) {
+        for (int i = 0; i < linea.length; i++) { //Recorrer el array de linea
+            if (linea[i]==0) { //Si el valor del array 'Linea' es 0 reemplazar por los números restantes
                 linea[i] = arrayRestante[contador];
                 contador++;
             }
         }
         System.out.println("La solución seria");
-        imprimirDatos(linea);
+        imprimirDatos(linea); //Imprimir solución
+        
+        
         //Metodo2
         /*En este enfoque se utiliza un solo array para almacenar la fila de números y un array booleano para marcar qué números han sido utilizados.
         Se recorre la fila y se marcan los números ya proporcionados. Luego, para las celdas vacías, se asigna el primer número disponible que no ha sido utilizado. */
@@ -124,13 +126,7 @@ public class Sudoku_Java {
 //        }
     }
 
-    public static boolean esNumeroValido(int numero) {
-        // Verificar si el número está en el rango válido (del 1 al 9)
-        if (numero < 1 || numero > 9) {
-            return false;
-        }
-        return true;
-    }
+    
 
     // Función para resolver la línea
     public static void resolverLinea2(int[] numeros) {
